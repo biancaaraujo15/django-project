@@ -2,9 +2,12 @@ from .models import Category, Invention
 from django.apps import apps
 
 def load_default_data():
+  Category = apps.get_model('myapp', 'Category')
+  Invention = apps.get_model('myapp', 'Invention')
+
   Invention.objects.all().delete()
   Category.objects.all().delete()
-
+  
   # Load categories
   c1 = Category.objects.create(name="Process")
   c2 = Category.objects.create(name="Machine")
