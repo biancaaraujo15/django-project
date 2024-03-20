@@ -63,12 +63,11 @@ class ThemeView(BaseView):
       response.set_cookie('theme', theme)
       return response
 
-  @staticmethod
-  def load_default_data():
-    Invention.objects.all().delete()
-    Category.objects.all().delete()
-    load_default_data()  # Call the load_default_data function
+def load_default_data_view(request):
+    load_default_data() #Call the load_default_data function
+    return JsonResponse({'status':'success'})
 
+  
 class InventionListView(ListView):
   model = Invention
   template_name = 'invention_list.html'
