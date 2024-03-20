@@ -4,6 +4,8 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.http import JsonResponse
+from .default_data import load_default_data
 
 
 # Create your views here.
@@ -56,4 +58,7 @@ class ThemeView(BaseView):
       response.set_cookie('theme', theme)
       return response
 
-  
+  def load_default_data_view(request):
+      load_default_data(None)  # Call the load_default_data function
+      return JsonResponse({'status': 'success'})
+
